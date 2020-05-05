@@ -634,3 +634,7 @@ func (ctxt *Context) SampleAspectRatio() avutil.Rational {
 func (ctxt *Context) SetSampleAspectRatio(r avutil.Rational) {
 	ctxt.sample_aspect_ratio = *((*C.struct_AVRational)(unsafe.Pointer(&r)))
 }
+
+func (ctxt *Context) SetStrictStdCompliance(s int) {
+	ctxt.strict_std_compliance = C.int(s)
+}
