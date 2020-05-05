@@ -9,7 +9,6 @@ package avutil
 
 //#cgo pkg-config: libavutil
 //#include <libavutil/avutil.h>
-//#include <libavutil/channel_layout.h>
 //#include <stdlib.h>
 //#include <errno.h>
 import "C"
@@ -58,12 +57,6 @@ func MediaTypeFromString(i string) MediaType {
 		return -1
 	}
 }
-
-const (
-	AV_CH_FRONT_LEFT    = 0x1
-	AV_CH_FRONT_RIGHT   = 0x2
-	AV_CH_LAYOUT_STEREO = 0x3 //(AV_CH_FRONT_LEFT | AV_CH_FRONT_RIGHT)
-)
 
 const (
 	AVERROR_EAGAIN = -(C.EAGAIN)
@@ -134,21 +127,6 @@ func AvFopenUtf8(p, m string) *File {
 //Return the fractional representation of the internal time base.
 func AvGetTimeBaseQ() Rational {
 	return (Rational)(C.av_get_time_base_q())
-}
-
-func AvGetChannelLayoutNbChannels(channelLayout uint64) int {
-	return int(C.av_get_channel_layout_nb_channels(C.uint64_t(channelLayout)))
-}
-
-func AvGetChannelLayoutString(channelLayout uint64) string {
-	bufSize := C.size_t(MAX_CHANNEL_LAYOUT_STR_LEN)
-	buf := (*C.char)(C.malloc(bufSize))
-	if buf == nil {
-		return fmt.Sprintf("unknown channel layout with code %d", channelLayout)
-	}
-	defer C.free(unsafe.Pointer(buf))
-	C.av_get_channel_layout_string(buf, C.int(bufSize), 0, C.uint64_t(channelLayout))
-	return C.GoString(buf)
 }
 
 func AvStrerr(errcode int) string {
