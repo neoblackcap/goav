@@ -1,4 +1,5 @@
 package avcodec
+
 import "C"
 
 func (cp *CodecParameters) CodecType() MediaType {

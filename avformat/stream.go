@@ -15,9 +15,9 @@ func (s *Stream) AvStreamGetRFrameRate() avutil.Rational {
 	panic("deprecated")
 	return avutil.Rational{}
 	/*
-	r := (C.struct_AVRational)(C.av_stream_get_r_frame_rate((*C.struct_AVStream)(s)))
+		r := (C.struct_AVRational)(C.av_stream_get_r_frame_rate((*C.struct_AVStream)(s)))
 
-	return *(*avutil.Rational)(unsafe.Pointer(&r))
+		return *(*avutil.Rational)(unsafe.Pointer(&r))
 	*/
 }
 
