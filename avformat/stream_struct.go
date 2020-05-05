@@ -14,8 +14,8 @@ import (
 	"github.com/asticode/goav/avutil"
 )
 
-func (avs *Stream) Codec() *CodecContext {
-	return (*CodecContext)(unsafe.Pointer(avs.codec))
+func (avs *Stream) Codec() *avcodec.Context {
+	return (*avcodec.Context)(unsafe.Pointer(avs.codec))
 }
 
 func (avs *Stream) CodecParameters() *avcodec.CodecParameters {
