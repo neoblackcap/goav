@@ -11,7 +11,7 @@ package avfilter
 */
 import "C"
 import (
-	"github.com/asticode/goav/avutil"
+	"github.com/tetsu-koba/goav/avutil"
 	"unsafe"
 )
 
