@@ -6,7 +6,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"unsafe"
 
 	"github.com/tetsu-koba/goav/avcodec"
 	"github.com/tetsu-koba/goav/avformat"
@@ -51,10 +50,6 @@ func Timelapse(inputFile, outputFile string) int {
 	}
 	inStream := ifmtCtx.Streams()[videoStreamIndex]
 	inCodecPar := inStream.CodecParameters()
-	if inCodecPar.CodecId() != avcodec.CodecId(avcodec.AV_CODEC_ID_H264) {
-		fmt.Printf("Sorry, Only H.264 is supported\n")
-		return 1
-	}
 	outStream := ofmtCtx.AvformatNewStream(nil)
 	if outStream == nil {
 		fmt.Println("Failed allocating output stream")
@@ -94,17 +89,12 @@ func Timelapse(inputFile, outputFile string) int {
 	return loop(ofmtCtx, ifmtCtx, videoStreamIndex)
 }
 
-func isPframe(packet *avcodec.Packet) bool {
-	d := avutil.PointerToUint8Slice(unsafe.Pointer(packet.Data()), packet.Size())
-	return len(d) < 4 || (d[4]&0x1f) == 1
-}
-
 func loop(ofmtCtx *avformat.Context, ifmtCtx *avformat.Context, videoStreamIndex int) int {
 	packet := avcodec.AvPacketAlloc()
 	defer avcodec.AvPacketFree(packet)
 	for ifmtCtx.AvReadFrame(packet) >= 0 {
 		if packet.StreamIndex() != videoStreamIndex ||
-			isPframe(packet) {
+			(packet.Flags()&avcodec.AV_PKT_FLAG_KEY) == 0 {
 			packet.AvPacketUnref()
 			continue
 		}
