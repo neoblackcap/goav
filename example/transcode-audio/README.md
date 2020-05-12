@@ -6,11 +6,14 @@ https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/doc/examples/transcode
 ## How to build
 
 Install ffmpeg developer libraries.
-If Ubuntu or Debian,
+If Ubuntu 20.04,
 
 ```
 sudo apt install -y libavdevice-dev libavfilter-dev libswscale-dev libavcodec-dev libavformat-dev libswresample-dev libavutil-dev
 ```
+
+Otherwise, you have to build ffmpeg 4.2 or newer.  Build with configure `--enable-shared`.
+
 
 Resolve dependency
 
