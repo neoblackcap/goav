@@ -11,11 +11,13 @@ Click this image to watch the sample video.
 ## How to build
 
 Install ffmpeg developer libraries.
-If Ubuntu or Debian,
+If Ubuntu 20.04
 
 ```
 sudo apt install -y libavdevice-dev libavfilter-dev libswscale-dev libavcodec-dev libavformat-dev libswresample-dev libavutil-dev
 ```
+
+Otherwise, you have to build ffmpeg 4.2 or newer.  Build with configure `--enable-shared`.
 
 Resolve dependency
 
@@ -34,8 +36,6 @@ go build
 ```
 ./timelapse <input_video_file> <output_video_file>
 ```
-
-Supported Video codec is H.264 only.
 
 For example
 
