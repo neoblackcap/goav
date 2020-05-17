@@ -191,6 +191,10 @@ func (ctxt *Context) StrictStdCompliance() int {
 	return int(ctxt.strict_std_compliance)
 }
 
+func (ctxt *Context) SetStrictStdCompliance(s int) {
+	ctxt.strict_std_compliance = C.int(s)
+}
+
 func (ctxt *Context) TsId() int {
 	return int(ctxt.ts_id)
 }
