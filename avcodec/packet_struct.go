@@ -23,7 +23,7 @@ func (p *Packet) Flags() int {
 	return int(p.flags)
 }
 
-func (p *Packet) SetFlags(f int64) {
+func (p *Packet) SetFlags(f int) {
 	p.flags = C.int(f)
 }
 
