@@ -564,6 +564,14 @@ func (ctxt *Context) CodecType() MediaType {
 	return (MediaType)(ctxt.codec_type)
 }
 
+func (ctxt *Context) CodecTag() uint {
+	return uint(ctxt.codec_tag)
+}
+
+func (ctxt *Context) SetCodecTag(tag uint) {
+	ctxt.codec_tag = C.uint(tag)
+}
+
 func (ctxt *Context) ColorPrimaries() AvColorPrimaries {
 	return (AvColorPrimaries)(ctxt.color_primaries)
 }
