@@ -10,7 +10,7 @@ import (
 	"reflect"
 	"unsafe"
 
-	"github.com/giorgisio/goav/avutil"
+	"github.com/sxhxliang/goav/avutil"
 )
 
 func (ctxt *Context) Chapters() **AvChapter {
@@ -232,6 +232,14 @@ func (ctxt *Context) Oformat() *OutputFormat {
 // func (ctxt *Context) DumpSeparator() uint8 {
 // 	return uint8(ctxt.dump_separator)
 // }
+
+func (outputFmt *OutputFormat) GetFlags() int {
+	return int(outputFmt.flags)
+}
+
+func (outputFmt *OutputFormat) SetFlags(flag int) {
+	outputFmt.flags = C.int(flag)
+}
 
 func (ctxt *Context) CorrectTsOverflow() int {
 	return int(ctxt.correct_ts_overflow)

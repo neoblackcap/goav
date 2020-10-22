@@ -10,8 +10,8 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/giorgisio/goav/avcodec"
-	"github.com/giorgisio/goav/avutil"
+	"github.com/sxhxliang/goav/avcodec"
+	"github.com/sxhxliang/goav/avutil"
 )
 
 const (
@@ -23,6 +23,10 @@ const (
 
 func (s *Context) AvFormatGetProbeScore() int {
 	return int(C.av_format_get_probe_score((*C.struct_AVFormatContext)(s)))
+}
+
+func (s *Context) AvFormatGetPrivData() unsafe.Pointer {
+	return unsafe.Pointer((*C.struct_AVFormatContext)(s).priv_data)
 }
 
 func (s *Context) AvFormatGetVideoCodec() *AvCodec {
