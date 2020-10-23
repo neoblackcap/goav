@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/sxhxliang/goav/avformat"
+	"github.com/neoblackcap/goav/avformat"
 )
 
 func TestAvUrlSplitWithSufficientSizes(t *testing.T) {

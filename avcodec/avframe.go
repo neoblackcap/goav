@@ -4,7 +4,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/sxhxliang/goav/avutil"
+	"github.com/neoblackcap/goav/avutil"
 )
 
 func (f *Frame) Pts() int64 {
